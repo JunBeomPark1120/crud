@@ -67,4 +67,4 @@ def update(request, id):
     post.content = content
     post.save()
     
-    return redirect(f'/posts/{post.id}/')
+    return redirect(f'/posts/{post.id}/')  
