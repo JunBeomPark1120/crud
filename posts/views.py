@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from .models import Post
 
 # Create your views here.
+# 게시물을 출력하는 함수
 def index(request):
     posts = Post.objects.all()
     
@@ -22,6 +23,7 @@ def detail(request, id):
     
     return render(request, 'detail.html', context)
 
+# 게시물을 생성하는 함수
 def new(request):
     return render(request, 'new.html')
 
@@ -36,12 +38,14 @@ def create(request):
     
     return redirect(f'/posts/{post.id}/')
 
+# 게시물을 삭제하는 함수
 def delete(request, id):
     post = Post.objects.get(id=id)
     post.delete()
     
     return redirect('/index/')
 
+# 게시물을 업데이트 하는 함수
 def edit(request, id):
     post = Post.objects.get(id=id)
     
