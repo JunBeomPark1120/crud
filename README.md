@@ -103,8 +103,40 @@ def index(request):
     }
     return render(request, 'index.html', context)
 ```
+
+- 하나의 게시물 출력
+```python
+def index(request):
+    posts = Post.objects.all()
+    
+    context = {
+       'posts' : posts,
+    }
+    return render(request, 'index.html', context)
+```
 ### 2. Create
 
+- 사용자에게 입력 할 수 있는 폼을 제공
+```python
+def new(request):
+    return render(request, 'new.html')
+```
+
+-사용자가 입력한 데이터를 가지고 DB에 저장하는 로직
+```python
+def create(request):
+    title = request.GET.get('title')
+    content = request.GET.get('content')
+    
+    post = Post()
+    post.title = title
+    post.content = content
+    post.save()
+    
+    return redirect(f'/posts/{post.id}/')
+```
 ### 3. Delete
+
+-
 
 ### 4. Update
